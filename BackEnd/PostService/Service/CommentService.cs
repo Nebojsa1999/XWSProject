@@ -27,5 +27,12 @@ namespace PostService.Service
                 return unitOfWork.Comments.GetCommentsByPost(postId);
             }
         }
+        public IEnumerable<Comment> GetCommentsByUser(long userId)
+        {
+            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
+            {
+                return unitOfWork.Comments.GetCommentsByUser(userId);
+            }
+        }
     }
 }

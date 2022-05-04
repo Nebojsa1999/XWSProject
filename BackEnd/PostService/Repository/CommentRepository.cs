@@ -23,5 +23,16 @@ namespace PostService.Repository
 
             return list;
         }
+    public IEnumerable<Comment> GetCommentsByUser(long userId)
+    {
+        List<Comment> list = new List<Comment>();
+        foreach (Comment comment in ProjectContext.Comments.Where(x => x.UserId == userId).ToList())
+        {
+            list.Add(comment);
+        }
+
+        return list;
     }
+    }
+
 }

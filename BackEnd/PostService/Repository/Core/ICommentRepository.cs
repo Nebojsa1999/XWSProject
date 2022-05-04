@@ -9,5 +9,6 @@ namespace PostService.Repository.Core
     public interface ICommentRepository : IBaseRepository<Comment>
     {
         public IEnumerable<Comment> GetCommentsByPost(long postId);
+        public IEnumerable<Comment> GetCommentsByUser(long userId);
     }
 }

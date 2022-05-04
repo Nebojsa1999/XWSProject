@@ -32,5 +32,11 @@ namespace PostService.Controllers
         {
             return Ok(commentService.GetCommentsByPost(postId));
         }
+        [Route("getCommentsByUser/{userId}")]
+        [HttpGet]
+        public IActionResult GetCommentsByUser(long userId)
+        {
+            return Ok(commentService.GetCommentsByUser(userId));
+        }
     }
 }

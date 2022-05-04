@@ -9,5 +9,6 @@ namespace PostService.Service.Core
     public interface ICommentService : IBaseService<Comment>
     {
         public IEnumerable<Comment> GetCommentsByPost(long postId);
+        public IEnumerable<Comment> GetCommentsByUser(long userId);
     }
 }
