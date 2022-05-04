@@ -27,6 +27,13 @@ namespace PostService.Service
                 return unitOfWork.Reactions.GetReactionsByPost(postId);
             }
         }
+        public IEnumerable<Reaction> GetReactionsByUser(long userId)
+        {
+            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
+            {
+                return unitOfWork.Reactions.GetReactionsByUser(userId);
+            }
+        }
 
     }
 }

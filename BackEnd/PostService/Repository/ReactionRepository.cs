@@ -24,6 +24,16 @@ namespace PostService.Repository
 
             return list;
         }
+        public IEnumerable<Reaction> GetReactionsByUser(long userId)
+        {
+            List<Reaction> list = new List<Reaction>();
+            foreach (Reaction reaction in ProjectContext.Reactions.Where(x => x.UserId == userId).ToList())
+            {
+                list.Add(reaction);
+            }
+
+            return list;
+        }
 
         public IEnumerable<Reaction> CheckIfReactionExists(long userId,long postId,EnumReaction reaction )
         {

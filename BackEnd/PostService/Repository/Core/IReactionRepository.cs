@@ -10,6 +10,8 @@ namespace PostService.Repository.Core
     public interface IReactionRepository : IBaseRepository<Reaction>
     {
         public IEnumerable<Reaction> GetReactionsByPost(long postId);
+        public IEnumerable<Reaction> GetReactionsByUser(long userId);
+
         public IEnumerable<Reaction> CheckIfReactionExists(long userId, long postId, EnumReaction reaction);
     }
 }
