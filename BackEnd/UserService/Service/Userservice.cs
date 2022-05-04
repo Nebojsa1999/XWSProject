@@ -111,6 +111,14 @@ namespace UserService.Service
             }
         }
 
+        public IEnumerable<User> GetUsersThatIFollow(long UserLoggedId)
+        {
+            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
+            {
+                return unitOfWork.Users.GetUsersThatIFollow(UserLoggedId);
+            }
+        }
+
         public IEnumerable<Entity> SearchUser(string userName)
         {
             using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))       //poziva dispose na kraju

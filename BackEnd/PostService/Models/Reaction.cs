@@ -6,7 +6,7 @@ using PostService.Models.Enums;
 
 namespace PostService.Models
 {
-    public class Reaction
+    public class Reaction : Entity
     {
         public long UserId { get; set; }
         public long PostId { get; set; }

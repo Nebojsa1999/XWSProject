@@ -66,6 +66,20 @@ namespace UserService.Controllers
             return Ok(userService.GetPublicUsers());
         }
 
+        [Route("getUsersThatIFollow")]
+        [HttpGet]
+        public IActionResult GetUsersThatIFollow()
+        {
+            User userCurrent = GetCurrentUser();
+            if (userCurrent == null)
+            {
+                return BadRequest("Must be logged in");
+
+            }
+
+            return Ok(userService.GetUsersThatIFollow(userCurrent.Id));
+        }
+
      
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using PostService.Configuration;
 using PostService.Models;
+using PostService.Repository;
 using PostService.Service.Core;
 
 namespace PostService.Service
@@ -18,6 +19,13 @@ namespace PostService.Service
         {
             _logger = logger;
             _configuration = configuration;
+        }
+        public IEnumerable<Comment> GetCommentsByPost(long postId)
+        {
+            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
+            {
+                return unitOfWork.Comments.GetCommentsByPost(postId);
+            }
         }
     }
 }

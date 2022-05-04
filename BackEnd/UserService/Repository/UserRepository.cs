@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using UserService.Models;
+using UserService.Models.Enum;
 using UserService.Repository.Core;
 
 namespace UserService.Repository
@@ -27,6 +29,17 @@ namespace UserService.Repository
         public IEnumerable<User> GetPublicUsers()
         {
             return ProjectContext.Users.Where(x=>x.Privacy ==false).ToList();
+        }
+
+        public IEnumerable<User> GetUsersThatIFollow(long loggedUserId)
+        {
+            List<User> list = new List<User>();
+            foreach (UserFollows entity in ProjectContext.UserFollows.Where(x => x.UserWhich.Id == loggedUserId && x.StateOfFollow == UserFollowEnum.Accepted).Include(x=>x.UserWhom).Include(x=>x.UserWhich).ToList())
+            {
+                list.Add(entity.UserWhom);
+            }
+
+            return list;
         }
 
     }

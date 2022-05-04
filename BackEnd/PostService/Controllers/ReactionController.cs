@@ -26,5 +26,12 @@ namespace PostService.Controllers
         {
             return Ok(reactionService.Add(reaction));
         }
+        [Route("getReactionsByPost")]
+        [HttpPost]
+        public IActionResult GetReactionsByPost(long postId)
+        {
+            return Ok(reactionService.GetReactionsByPost(postId));
+        }
+      
     }
 }

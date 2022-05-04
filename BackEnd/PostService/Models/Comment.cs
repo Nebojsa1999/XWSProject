@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PostService.Models
 {
-    public class Comment
+    public class Comment : Entity
     {
         public string Content { get; set; }
         public long UserId { get; set; }

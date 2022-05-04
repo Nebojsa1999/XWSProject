@@ -53,7 +53,9 @@ namespace PostService.Service
         
         {
             using UnitOfWork unitOfWork = new(new ProjectContext());
-            return unitOfWork.Posts.GetPostsPublicUser(listUserIdDTO);
+            {
+             return unitOfWork.Posts.GetPostsPublicUser(listUserIdDTO);
+            }
         }
 
     }
