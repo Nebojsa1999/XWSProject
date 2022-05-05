@@ -20,6 +20,34 @@ namespace PostService.Service
             _logger = logger;
             _configuration = configuration;
         }
+
+        public override Reaction Add(Reaction entity)
+        {
+            if (entity == null)
+            {
+                return null;
+            }
+
+            try
+            {
+                using UnitOfWork unitOfWork = new(new ProjectContext());
+                if(unitOfWork.Reactions.GetReactionByUserAndPost(entity.UserId,entity.PostId) != null)
+                {
+                    return null;
+                }
+                unitOfWork.Reactions.Add(entity);
+                _ = unitOfWork.Complete();
+
+            }
+
+            catch (Exception e)
+            {
+                _logger.LogError($"Error in ReactionService in Add {e.Message} {e.StackTrace}");
+                return null;
+            }
+
+            return entity;
+        }
         public IEnumerable<Reaction> GetReactionsByPost(long postId)
         {
             using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
@@ -34,6 +62,8 @@ namespace PostService.Service
                 return unitOfWork.Reactions.GetReactionsByUser(userId);
             }
         }
+
+     
 
     }
 }

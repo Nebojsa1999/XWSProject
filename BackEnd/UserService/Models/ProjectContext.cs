@@ -55,7 +55,8 @@ namespace UserService.Models
                 }
 
 
-                optionsBuilder.UseSqlServer("data source=localhost; Initial Catalog=xws;Integrated Security=True;");
+            optionsBuilder.UseSqlServer("Server=mssql;Database=users;User Id=sa;Password=myPassword;");
+
             }
         }
 }

@@ -57,6 +57,14 @@ namespace PostService.Service
              return unitOfWork.Posts.GetPostsPublicUser(listUserIdDTO);
             }
         }
+        public List<Post> GetPostsFromFollowedUser(List<long> listUserIdDTO)
+
+        {
+            using UnitOfWork unitOfWork = new(new ProjectContext());
+            {
+                return unitOfWork.Posts.GetPostsFromFollowedUser(listUserIdDTO);
+            }
+        }
 
     }
 

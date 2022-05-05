@@ -11,6 +11,7 @@ namespace PostService.Service.Core
     {
         public Post Create(PostDTO postDTO);
         public List<Post> GetPostsPublicUser(List<long> listUserIdDTO);
+        public List<Post> GetPostsFromFollowedUser(List<long> listUserIdDTO);
 
     }
 }

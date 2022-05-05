@@ -20,5 +20,11 @@ namespace PostService.Repository
 
         }
 
+        public List<Post> GetPostsFromFollowedUser(List<long> Ids)
+        {
+            return ProjectContext.Posts.Where(x => Ids.Contains(x.UserId)).ToList();
+
+        }
+
     }
 }

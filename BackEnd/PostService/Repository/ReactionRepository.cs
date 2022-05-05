@@ -35,9 +35,10 @@ namespace PostService.Repository
             return list;
         }
 
-        public IEnumerable<Reaction> CheckIfReactionExists(long userId,long postId,EnumReaction reaction )
+        public Reaction GetReactionByUserAndPost(long userId,long postId )
         {
-           return ProjectContext.Reactions.Where(x => x.PostId == postId && x.UserId == userId && x.Reactions == reaction).ToList();
+            Reaction reaction = ProjectContext.Reactions.Where(x => x.PostId == postId && x.UserId == userId).FirstOrDefault();
+            return reaction;
         }
     }
 }
