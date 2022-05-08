@@ -28,7 +28,7 @@ namespace PostService.Controllers
             return Ok(postService.Create(postDTO));
         }
 
-        [Route("getPosts")]
+        [Route("getPostsPublicUser")]
         [HttpGet]
         public IActionResult GetPostsPublicUser(ListUserIdDTO listUserIdDTO)
         {
