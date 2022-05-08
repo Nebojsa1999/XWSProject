@@ -63,6 +63,12 @@ namespace UserService.Controllers
         [HttpGet]
         public IActionResult GetPublicUsers()
         {
+            User userCurrent = GetCurrentUser();
+            if (userCurrent == null)
+            {
+                return BadRequest("Must be logged in");
+
+            }
             return Ok(userService.GetPublicUsers());
         }
 
@@ -78,6 +84,20 @@ namespace UserService.Controllers
             }
 
             return Ok(userService.GetUsersThatIFollow(userCurrent.Id));
+        }
+
+        [Route("getUsersThatSentRequest")]
+        [HttpGet]
+        public IActionResult GetUsersThatSentRequest()
+        {
+            User userCurrent = GetCurrentUser();
+            if (userCurrent == null)
+            {
+                return BadRequest("Must be logged in");
+
+            }
+
+            return Ok(userService.GetUsersThatSentRequest(userCurrent.Id));
         }
 
      

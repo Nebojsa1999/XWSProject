@@ -42,6 +42,17 @@ namespace UserService.Repository
             return list;
         }
 
+        public IEnumerable<User> GetUsersThatSentRequest(long loggedUserId)
+        {
+            List<User> list = new List<User>();
+            foreach (UserFollows entity in ProjectContext.UserFollows.Where(x => x.UserWhom.Id == loggedUserId && x.StateOfFollow == UserFollowEnum.Pending).Include(x => x.UserWhom).Include(x => x.UserWhich).ToList())
+            {
+                list.Add(entity.UserWhich);
+            }
+
+            return list;
+        }
+
     }
 
 }

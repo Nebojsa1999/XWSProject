@@ -11,6 +11,7 @@ namespace UserService.Repository.Core
         User GetUserWithUserName(string userName);
         public IEnumerable<User> GetPublicUsers();
         public IEnumerable<User> GetUsersThatIFollow(long LoggedUserId);
+        public IEnumerable<User> GetUsersThatSentRequest(long loggedUserId);
 
     }
 }

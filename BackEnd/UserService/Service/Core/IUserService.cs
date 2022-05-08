@@ -13,6 +13,7 @@ namespace UserService.Service.Core
         IEnumerable<Entity> SearchUser(string term="");
         public IEnumerable<User> GetPublicUsers();
         public IEnumerable<User> GetUsersThatIFollow(long UserLoggedId);
+        public IEnumerable<User> GetUsersThatSentRequest(long UserLoggedId);
 
     }
 
