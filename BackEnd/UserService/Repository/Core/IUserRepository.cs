@@ -12,6 +12,7 @@ namespace UserService.Repository.Core
         public IEnumerable<User> GetPublicUsers();
         public IEnumerable<User> GetUsersThatIFollow(long LoggedUserId);
         public IEnumerable<User> GetUsersThatSentRequest(long loggedUserId);
+        public IEnumerable<User> GetUsersThatIDontFollow(long loggedUserId);
 
     }
 }

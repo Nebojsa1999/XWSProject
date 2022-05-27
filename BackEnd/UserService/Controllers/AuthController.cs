@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using UserService.Configuration;
@@ -15,6 +16,8 @@ using UserService.Util;
 
 namespace UserService.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class AuthController : BaseController<User>
     {
         private readonly ProjectConfiguration _config;
@@ -25,7 +28,13 @@ namespace UserService.Controllers
             _config = config;
             _userService = userService;
         }
-
+        [HttpGet]
+        [Authorize]
+        [Route("current")]
+        public IActionResult GetCurrent()
+        {
+            return Ok(base.GetCurrentUser());
+        }
 
         [Route("login")]
         [HttpPost]

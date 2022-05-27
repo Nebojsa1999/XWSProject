@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using PostService.Configuration;
-using PostService.Models;
-using PostService.Models.DTO;
+using PostService.Model;
+using PostService.Model.DTO;
 using PostService.Repository;
 using PostService.Service.Core;
 
@@ -66,6 +66,7 @@ namespace PostService.Service
             }
         }
 
+   
     }
 
 }

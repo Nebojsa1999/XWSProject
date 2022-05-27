@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PostService.Models
+namespace PostService.Model
 {
     public class Post : Entity
     {

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PostService.Configuration;
-using PostService.Models;
+using PostService.Model;
+using PostService.Models.DTO;
 using PostService.Service.Core;
 
 namespace PostService.Controllers
@@ -37,6 +38,14 @@ namespace PostService.Controllers
         public IActionResult GetReactionsByUser(long userId)
         {
             return Ok(reactionService.GetReactionsByUser(userId));
+        }
+
+        [Route("getReactionByUserAndPost")]
+        [HttpPost]
+        public IActionResult GetReactionByUserAndPost(ReactionByUserAndPostDTO reactionByUserAndPostDTO)
+        {
+            return Ok(reactionService.GetReactionByUserAndPost(reactionByUserAndPostDTO.UserId, reactionByUserAndPostDTO.PostId));
+
         }
 
     }

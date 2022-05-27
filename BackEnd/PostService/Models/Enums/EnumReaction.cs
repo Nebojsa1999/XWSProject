@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PostService.Models.Enums
+namespace PostService.Model.Enums
 {
     public enum EnumReaction
     {

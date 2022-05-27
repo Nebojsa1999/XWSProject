@@ -24,39 +24,36 @@ namespace UserService.Controllers
 
         [Route("register")]
         [HttpPost]
-        public IActionResult Register(User user)
+        public IActionResult Register(RegisterDTO user)
         {
             if (userService.GetUserWithUserName(user.Username) != null)
             {
                 return BadRequest("UserName already exists");
             }
             
-            return Ok(userService.Add(user));
+            return Ok(userService.AddUser(user));
         }
 
         [Route("search")]
         [HttpPost]
         public IActionResult Search(SearchDTO searchDTO)
         {
-            return Ok(userService.SearchUser(searchDTO.UserName));
+            return Ok(userService.SearchUser(searchDTO.Name));
         }
 
         [Route("updateProfile")]
         [HttpPut]
 
-        public IActionResult UpdateProfile(User user)
+        public IActionResult UpdateProfile(UpdateDTO user)
         {
-            if (userService.GetUserWithUserName(user.Username) != null)
-            {
-                return BadRequest("UserName already exists");
-            }
+           
             User userCurrent = GetCurrentUser();
             if(userCurrent == null)
             {
-                return BadRequest("Must be logged in");
+               return BadRequest("Must be logged in");
 
             }
-            return Ok(userService.Update(userCurrent.Id,user));
+            return Ok(userService.UpdateUser(userCurrent.Id,user));
         }
 
         [Route("getPublicUsers")]
@@ -100,6 +97,29 @@ namespace UserService.Controllers
             return Ok(userService.GetUsersThatSentRequest(userCurrent.Id));
         }
 
-     
+        [Route("getUsersThatIDontFollow")]
+        [HttpGet]
+        public IActionResult GetUsersThatIDontFollow()
+        {
+            User userCurrent = GetCurrentUser();
+            if (userCurrent == null)
+            {
+                return BadRequest("Must be logged in");
+
+            }
+            return Ok(userService.GetUsersThatIDontFollow(userCurrent.Id));
+
+        }
+
+        [Route("getAll")]
+        [HttpGet]
+
+        public IActionResult GetAll()
+        {
+            return Ok(userService.GetAllUsers());
+        }
+
+
+
     }
 }

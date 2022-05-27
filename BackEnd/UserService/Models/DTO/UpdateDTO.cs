@@ -17,5 +17,8 @@ namespace UserService.Models.DTO
         public string Education { get; set; }
         public string Skill { get; set; }
         public string Interest { get; set; }
+        public int Gender { get; set; }
+        public string DateOfBirth { get; set; }
+        public bool Privacy { get; set; }
     }
 }

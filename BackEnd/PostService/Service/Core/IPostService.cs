@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PostService.Models;
-using PostService.Models.DTO;
+using PostService.Model;
+using PostService.Model.DTO;
 
 namespace PostService.Service.Core
 {

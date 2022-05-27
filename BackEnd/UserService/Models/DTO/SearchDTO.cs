@@ -7,6 +7,6 @@ namespace UserService.Models.DTO
 {
     public class SearchDTO
     {
-        public string UserName { get; set; }
+        public string Name { get; set; }
     }
 }

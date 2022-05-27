@@ -27,7 +27,7 @@ namespace PostService.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult Get(long id)
         {
             TEntity entity = _base.Get(id);
             if (entity == null)

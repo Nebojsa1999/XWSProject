@@ -35,7 +35,6 @@ namespace UserService.Controllers
 
             return Ok(userFollowService.AddUserFollows(userCurrent.Id, userFollowDTO.IdUserWhomFollow));
 
-
         }
 
         [Route("acceptFollow/{userFollowId}")]

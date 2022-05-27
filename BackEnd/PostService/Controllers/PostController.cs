@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PostService.Configuration;
-using PostService.Models;
-using PostService.Models.DTO;
+using PostService.Model;
+using PostService.Model.DTO;
 using PostService.Service.Core;
 
 namespace PostService.Controllers
@@ -25,22 +25,25 @@ namespace PostService.Controllers
         [HttpPost]
         public IActionResult Create(PostDTO postDTO)
         {
+            
             return Ok(postService.Create(postDTO));
         }
 
         [Route("getPostsPublicUser")]
-        [HttpGet]
+        [HttpPost]
         public IActionResult GetPostsPublicUser(ListUserIdDTO listUserIdDTO)
         {
             return Ok(postService.GetPostsPublicUser(listUserIdDTO.UserIds));
         }
 
         [Route("getPostsFromFollowedUser")]
-        [HttpGet]
+        [HttpPost]
         public IActionResult GetPostsFromFollowedUser(ListUserIdDTO listUserIdDTO)
         {
             return Ok(postService.GetPostsFromFollowedUser(listUserIdDTO.UserIds));
         }
+
+     
 
     }
 }

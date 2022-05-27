@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using UserService.Configuration;
 using UserService.Models;
+using UserService.Models.DTO;
 using UserService.Repository;
 using UserService.Service.Core;
+using UserService.Util;
 
 namespace UserService.Service
 {
@@ -21,20 +23,28 @@ namespace UserService.Service
             _configuration = configuration;
         }
 
-        public override User Add(User entity)
+        public  User AddUser(RegisterDTO entity)
         {
             if (entity == null)
             {
                 return null;
             }
+            User user = new User();
 
             try
             {
                 using UnitOfWork unitOfWork = new(new ProjectContext());
-                entity.Password = BCrypt.Net.BCrypt.HashPassword(entity.Password);
+                user.Password = BCrypt.Net.BCrypt.HashPassword(entity.Password);
 
-                entity.Enabled = true;
-                unitOfWork.Users.Add(entity);
+                user.Enabled = true;
+                user.Gender = ParseHelper.genderString(entity.Gender);
+                user.Email = entity.Email;
+                user.Username = entity.Username;
+                user.Name = entity.Name;
+                user.Surname = entity.Surname;
+                user.PhoneNumber = entity.PhoneNumber;
+                user.DateOfBirth = DateTime.Parse(entity.DateOfBirth);
+                unitOfWork.Users.Add(user);
                 _ = unitOfWork.Complete();
 
             }
@@ -45,10 +55,10 @@ namespace UserService.Service
                 return null;
             }
 
-            return entity;
+            return user;
         }
 
-        public override bool Update(long id, User entity)
+        public bool UpdateUser(long id, UpdateDTO entity)
         {
             try
             {
@@ -57,14 +67,15 @@ namespace UserService.Service
                 entity1.Biography = entity.Biography;
                 entity1.Education = entity.Education;
                 entity1.Email = entity.Email;
-                entity1.Gender = entity.Gender;
+                entity1.Gender = ParseHelper.genderInt(entity.Gender);
                 entity1.Interest = entity.Interest;
                 entity1.Name = entity.Name;
                 entity1.PhoneNumber = entity.PhoneNumber;
                 entity1.Skill = entity.Skill;
                 entity1.Surname = entity.Surname;
                 entity1.WorkExperience = entity.WorkExperience;
-
+                entity1.DateOfBirth = DateTime.Parse(entity.DateOfBirth);
+                entity1.Privacy = entity.Privacy;
                 unitOfWork.Users.Update(entity1);
                 _ = unitOfWork.Complete();
                 return true;
@@ -127,11 +138,20 @@ namespace UserService.Service
             }
         }
 
-        public IEnumerable<Entity> SearchUser(string userName)
+        public IEnumerable<User> GetUsersThatIDontFollow(long UserLoggedId)
+        {
+            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
+            {
+                return unitOfWork.Users.GetUsersThatIDontFollow(UserLoggedId);
+            }
+        }
+
+
+        public IEnumerable<Entity> SearchUser(string Name)
         {
             using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))       //poziva dispose na kraju
             {
-                return unitOfWork.Users.Search(userName);
+                return unitOfWork.Users.Search(Name);
             }
         }
     }

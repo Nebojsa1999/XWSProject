@@ -22,7 +22,7 @@ namespace UserService.Models
         public bool Enabled { get; set; }
         public Gender Gender { get; set; }
         public bool Privacy { get; set; }
-
+        public DateTime DateOfBirth { get; set; }
       
     }
 }

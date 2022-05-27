@@ -14,7 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using PostService.Configuration;
-using PostService.Models;
+using PostService.Model;
 using PostService.Service;
 using PostService.Service.Core;
 
@@ -59,7 +59,7 @@ namespace PostService
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ProjectContext dataContext)
         {
             if (env.IsDevelopment())
             {
@@ -67,6 +67,7 @@ namespace PostService
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PostService v1"));
             }
+            dataContext.Database.Migrate();
 
             app.UseHttpsRedirection();
             app.UseForwardedHeaders(new ForwardedHeadersOptions

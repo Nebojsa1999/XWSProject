@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using PostService.Models;
+using PostService.Model;
 using PostService.Repository.Core;
 
 namespace PostService.Repository

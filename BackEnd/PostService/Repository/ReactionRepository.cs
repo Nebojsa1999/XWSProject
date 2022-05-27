@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PostService.Models;
-using PostService.Models.Enums;
+using PostService.Model;
+using PostService.Model.Enums;
 using PostService.Repository.Core;
 
 namespace PostService.Repository
@@ -40,5 +40,7 @@ namespace PostService.Repository
             Reaction reaction = ProjectContext.Reactions.Where(x => x.PostId == postId && x.UserId == userId).FirstOrDefault();
             return reaction;
         }
+
+        
     }
 }

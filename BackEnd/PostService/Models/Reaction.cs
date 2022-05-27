@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PostService.Models.Enums;
+using PostService.Model.Enums;
 
-namespace PostService.Models
+namespace PostService.Model
 {
     public class Reaction : Entity
     {

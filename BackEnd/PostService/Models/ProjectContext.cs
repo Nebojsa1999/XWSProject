@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using PostService.Configuration;
 
-namespace PostService.Models
+namespace PostService.Model
 {
     public class ProjectContext : DbContext
     {
@@ -57,7 +57,9 @@ namespace PostService.Models
             }
 
 
-            optionsBuilder.UseSqlServer("data source=localhost; Initial Catalog=postXWS;Integrated Security=True;");
+            optionsBuilder.UseSqlServer("Server=mssql;Database=posts;User Id=sa;Password=Your_password123;");
+            //optionsBuilder.UseSqlServer("data source=localhost; Initial Catalog=postXWS;Integrated Security=True;");
+
         }
     }
 }

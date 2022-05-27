@@ -1,6 +1,14 @@
 version: "3.9"
 services:
+    api_gateway:
+        container_name: api_gateway
+        build:
+            context: .
+            dockerfile: ./GatewayApi/Dockerfile
+        ports:
+            - "8080:80"
     user_service:
+        container_name: user_service
         build: 
             context: .
             dockerfile: ./UserService/Dockerfile
@@ -9,6 +17,7 @@ services:
         depends_on:
             - mssql
     post_service:
+        container_name: post_service
         build: 
             context: .
             dockerfile: ./PostService/Dockerfile
@@ -17,6 +26,7 @@ services:
         depends_on:
             - mssql
     job_service:
+        container_name: job_service
         build: 
             context: .
             dockerfile: ./JobService/Dockerfile
@@ -25,6 +35,7 @@ services:
         depends_on:
             - mssql
     message_service:
+        container_name: message_service
         build: 
             context: .
             dockerfile: ./MessageService/Dockerfile

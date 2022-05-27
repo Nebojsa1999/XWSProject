@@ -7,14 +7,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserService", "UserService\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PostService", "PostService\PostService.csproj", "{1690F3F0-88D8-4B00-AF67-3A68C242275D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageService", "MessageService\MessageService.csproj", "{FEE82C4A-F174-43F5-9DE1-D0DBFCDFFD85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageService", "MessageService\MessageService.csproj", "{FEE82C4A-F174-43F5-9DE1-D0DBFCDFFD85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobService", "JobService\JobService.csproj", "{549FB429-8B30-4A32-ACEA-7C987CB650E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobService", "JobService\JobService.csproj", "{549FB429-8B30-4A32-ACEA-7C987CB650E4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AB862835-A522-4221-B347-627C275973D9}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GatewayApi", "GatewayApi\GatewayApi.csproj", "{7EFF280B-A395-4444-9292-6CFB6273ED40}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{549FB429-8B30-4A32-ACEA-7C987CB650E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{549FB429-8B30-4A32-ACEA-7C987CB650E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{549FB429-8B30-4A32-ACEA-7C987CB650E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EFF280B-A395-4444-9292-6CFB6273ED40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EFF280B-A395-4444-9292-6CFB6273ED40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EFF280B-A395-4444-9292-6CFB6273ED40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EFF280B-A395-4444-9292-6CFB6273ED40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

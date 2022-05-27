@@ -29,6 +29,9 @@ namespace UserService.Migrations
                     b.Property<string>("Biography")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("Deleted")
                         .HasColumnType("bit");
 

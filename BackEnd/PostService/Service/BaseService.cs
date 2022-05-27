@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using PostService.Configuration;
-using PostService.Models;
+using PostService.Model;
 using PostService.Repository;
 using PostService.Service.Core;
 
@@ -12,8 +12,8 @@ namespace PostService.Service
 {
     public class BaseService<TEntity> : IBaseService<TEntity> where TEntity : class
     {
-        protected readonly ILogger _logger;
-        protected readonly ProjectConfiguration _configuration;
+        protected  ILogger _logger;
+        protected  ProjectConfiguration _configuration;
 
         public BaseService()
         {
@@ -33,18 +33,13 @@ namespace PostService.Service
 
         public virtual TEntity Get(long id)
         {
-            try
-            {
+            
                 using UnitOfWork unitOfWork = new(new ProjectContext());
                 TEntity entity = unitOfWork.GetRepository<TEntity>().Get(id);
 
                 return entity;
-            }
-            catch (Exception e)
-            {
-                _logger.LogError($"Error in BaseService in Get Method {e.Message} in {e.StackTrace}");
-                return null;
-            }
+            
+         
         }
 
 

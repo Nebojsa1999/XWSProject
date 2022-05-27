@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using PostService.Configuration;
-using PostService.Models;
+using PostService.Model;
 using PostService.Repository;
 using PostService.Service.Core;
 
@@ -31,12 +31,29 @@ namespace PostService.Service
             try
             {
                 using UnitOfWork unitOfWork = new(new ProjectContext());
-                if(unitOfWork.Reactions.GetReactionByUserAndPost(entity.UserId,entity.PostId) != null)
+                Reaction reaction = unitOfWork.Reactions.GetReactionByUserAndPost(entity.UserId, entity.PostId);
+                if (reaction == null)
                 {
-                    return null;
+                    unitOfWork.Reactions.Add(entity);
+                    _ = unitOfWork.Complete();
                 }
-                unitOfWork.Reactions.Add(entity);
-                _ = unitOfWork.Complete();
+                else
+                {
+                    if (reaction.Reactions == entity.Reactions)
+                    {
+                        return null;
+                    }
+
+                    else
+                    {
+                        
+                        unitOfWork.Reactions.Update(reaction);
+                        reaction.Reactions = entity.Reactions;
+                        _ = unitOfWork.Complete();
+                    }
+                }
+
+                return entity;
 
             }
 
@@ -46,7 +63,6 @@ namespace PostService.Service
                 return null;
             }
 
-            return entity;
         }
         public IEnumerable<Reaction> GetReactionsByPost(long postId)
         {
@@ -63,7 +79,16 @@ namespace PostService.Service
             }
         }
 
-     
+        public Reaction GetReactionByUserAndPost(long userId, long postId)
+            {
+            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
+            {
+                return unitOfWork.Reactions.GetReactionByUserAndPost(userId,postId);
+            }
+        }
+
+
+
 
     }
 }

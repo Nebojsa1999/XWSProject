@@ -23,7 +23,7 @@ namespace UserService.Repository
 
         public override IEnumerable<Entity> Search(string term = "")
         {
-            return ProjectContext.Users.Where(x => x.Username.Contains(term) && x.Privacy == false).ToList();
+            return ProjectContext.Users.Where(x => x.Name.Contains(term) && x.Privacy == false).ToList();
         }
 
         public IEnumerable<User> GetPublicUsers()
@@ -33,13 +33,9 @@ namespace UserService.Repository
 
         public IEnumerable<User> GetUsersThatIFollow(long loggedUserId)
         {
-            List<User> list = new List<User>();
-            foreach (UserFollows entity in ProjectContext.UserFollows.Where(x => x.UserWhich.Id == loggedUserId && x.StateOfFollow == UserFollowEnum.Accepted).Include(x=>x.UserWhom).Include(x=>x.UserWhich).ToList())
-            {
-                list.Add(entity.UserWhom);
-            }
+            List<UserFollows> userFollows = ProjectContext.UserFollows.Include(x => x.UserWhich).Include(x => x.UserWhom).Where(x => x.UserWhich.Id == loggedUserId && x.StateOfFollow == UserFollowEnum.Accepted).ToList();
 
-            return list;
+            return ProjectContext.Users.Where(x => userFollows.Select(x => x.UserWhom.Id).Contains(x.Id) && x.Id != loggedUserId).ToList();    
         }
 
         public IEnumerable<User> GetUsersThatSentRequest(long loggedUserId)
@@ -51,6 +47,30 @@ namespace UserService.Repository
             }
 
             return list;
+        }
+
+        public IEnumerable<User> GetUsersWithoutMe(long loggedUserId)
+        {
+            List<User> list = new List<User>();
+            foreach (User entity in ProjectContext.Users)
+            {
+
+                if (entity.Id == loggedUserId)
+                {
+                    continue;
+                }
+
+                list.Add(entity);
+            }
+
+            return list;
+        }
+        public IEnumerable<User> GetUsersThatIDontFollow(long loggedUserId)
+        {
+            List<UserFollows> userFollows = ProjectContext.UserFollows.Include(x => x.UserWhich).Include(x => x.UserWhom).Where(x => x.UserWhich.Id == loggedUserId).ToList();
+
+            return ProjectContext.Users.Where(x => !userFollows.Select(x => x.UserWhom.Id).Contains(x.Id) && x.Id != loggedUserId).ToList();         //iz liste svih usera nemoj staviti usere koje pratim(userFollows) 
+
         }
 
     }

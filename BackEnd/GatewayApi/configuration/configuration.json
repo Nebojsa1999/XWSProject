@@ -1,0 +1,57 @@
+{
+    "Routes": [
+        {
+            "DownstreamPathTemplate": "/api/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "user_service",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/users/{everything}",
+            "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE", "OPTION", "PATCH" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "post_service",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/posts/{everything}",
+            "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE", "OPTION", "PATCH" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "job_service",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/jobs/{everything}",
+            "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE", "OPTION", "PATCH" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "message_service",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/messages/{everything}",
+            "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE", "OPTION", "PATCH" ]
+        }
+
+    ],
+    "GlobalConfiguration": {
+        "RequestIdKey": "OcRequestId",
+        "AdministrationPath": "/administration"
+    }
+}

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PostService.Configuration;
-using PostService.Models;
+using PostService.Model;
 using PostService.Service.Core;
 
 namespace PostService.Controllers
@@ -32,7 +32,7 @@ namespace PostService.Controllers
         {
             return Ok(commentService.GetCommentsByPost(postId));
         }
-        [Route("getCommentsByUser/{userId}")]
+        [Route("getCommentsByUser/{postId}")]
         [HttpGet]
         public IActionResult GetCommentsByUser(long userId)
         {
