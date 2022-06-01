@@ -18,34 +18,45 @@ namespace JobService.Service
             {
                 return null;
             }
-            ApiKey apiKey = new ApiKey();
-
             try
             {
                 using UnitOfWork unitOfWork = new(new ProjectContext());
+                ApiKey apiKey = GetApiKeyFromUser(entity.userId);
 
-                apiKey.ApiKeyString = RandomStringHelper.RandomString(5);
-                apiKey.userId = entity.userId;
-                unitOfWork.ApiKeys.Add(apiKey);
-                _ = unitOfWork.Complete();
+                if (apiKey == null)
+                {
+
+                    unitOfWork.ApiKeys.Add(entity);
+                    _ = unitOfWork.Complete();
+
+                }
+
+                else
+                {
+                    apiKey.ApiKeyString = RandomStringHelper.RandomString(5);
+                    unitOfWork.ApiKeys.Update(apiKey);
+                    _ = unitOfWork.Complete();
+                }
+                return entity;
 
             }
+
+
 
             catch (Exception e)
             {
-                _logger.LogError($"Error in ApiKey in Add Method {e.Message} {e.StackTrace}");
+                _logger.LogError($"Error in ApiKeyService in Add {e.Message} {e.StackTrace}");
                 return null;
             }
-
-            return apiKey;
         }
-
-        public IEnumerable<Entity> GetAllApiKeysFromUserId(long userId)
+        public ApiKey GetApiKeyFromUser(long id)
         {
-            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))       //poziva dispose na kraju
-            {
-                return unitOfWork.ApiKeys.GetAllApiKeysFromUserId(userId);
-            }
+
+            using UnitOfWork unitOfWork = new(new ProjectContext());
+            return unitOfWork.ApiKeys.GetApiKeyFromUser(id);
         }
+
+
+ 
     }
 }

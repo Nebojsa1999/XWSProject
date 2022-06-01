@@ -8,6 +8,6 @@ namespace JobService.Service.Core
 {
     public interface IApiKeyService : IBaseService<ApiKey>
     {
-        public IEnumerable<Entity> GetAllApiKeysFromUserId(long userId);
+        public ApiKey GetApiKeyFromUser(long id);
     }
 }

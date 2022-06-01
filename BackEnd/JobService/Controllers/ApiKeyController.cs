@@ -32,7 +32,7 @@ namespace JobService.Controllers
         [HttpGet]
         public IActionResult GetAllApiKeysFromUserId(long userId)
         {
-            return Ok(apiKeyService.GetAllApiKeysFromUserId(userId));
+            return Ok(apiKeyService.GetApiKeyFromUser(userId));
         }
     }
 }

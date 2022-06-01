@@ -8,7 +8,7 @@ namespace JobService.Repository.Core
 {
     public interface IApiKeyRepository : IBaseRepository<ApiKey>
     {
-        public IEnumerable<Entity> GetAllApiKeysFromUserId(long userId);
+        public ApiKey GetApiKeyFromUser(long userId);
 
     }
 }

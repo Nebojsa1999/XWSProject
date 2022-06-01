@@ -16,9 +16,9 @@ namespace JobService.Repository
 
         }
 
-        public IEnumerable<Entity> GetAllApiKeysFromUserId(long userId)
+        public ApiKey GetApiKeyFromUser(long userId)
         {
-            return ProjectContext.ApiKeys.Where(x => x.userId == userId).ToList();
+            return ProjectContext.ApiKeys.Where(x => x.userId == userId).FirstOrDefault();
         }
     }
 }
