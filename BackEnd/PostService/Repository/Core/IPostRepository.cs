@@ -10,5 +10,6 @@ namespace PostService.Repository.Core
     {
         public List<Post> GetPostsPublicUser(List<long> listUserIdDTO);
         public List<Post> GetPostsFromFollowedUser(List<long> Ids);
+        public List<Post> GetPostsByUser(long userId);
     }
 }

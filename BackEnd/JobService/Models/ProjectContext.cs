@@ -47,7 +47,7 @@ namespace JobService.Models
 
 
         public DbSet<Job> Jobs { get; set; }
-
+        public DbSet<ApiKey> ApiKeys { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (optionsBuilder.IsConfigured)
@@ -56,8 +56,8 @@ namespace JobService.Models
             }
 
 
-            optionsBuilder.UseSqlServer("Server=mssql;Database=jobs;User Id=sa;Password=Your_password123;");
-           // optionsBuilder.UseSqlServer("data source=localhost; Initial Catalog=jobxws;Integrated Security=True;");
+             optionsBuilder.UseSqlServer("Server=mssql;Database=jobs;User Id=sa;Password=Your_password123;");
+            //optionsBuilder.UseSqlServer("Server=DESKTOP-NCTNO5B; Initial Catalog=jobxws;Integrated Security=True;");
 
         }
     }

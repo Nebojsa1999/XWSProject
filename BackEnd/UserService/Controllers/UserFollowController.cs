@@ -37,9 +37,9 @@ namespace UserService.Controllers
 
         }
 
-        [Route("acceptFollow/{userFollowId}")]
+        [Route("acceptFollow/{userWhoFollowsMe}")]
         [HttpPut]
-        public IActionResult AcceptFollow(long userFollowId)
+        public IActionResult AcceptFollow(long userWhoFollowsMe)
         {
             User userCurrent = GetCurrentUser();
             if (userCurrent == null)
@@ -48,14 +48,14 @@ namespace UserService.Controllers
 
             }
 
-            return Ok(userFollowService.AcceptFollow(userFollowId));
+            return Ok(userFollowService.AcceptFollow(userWhoFollowsMe, userCurrent.Id));
 
 
         }
 
-        [Route("declineFollow/{userFollowId}")]
+        [Route("declineFollow/{userWhoFollowsMe}")]
         [HttpPut]
-        public IActionResult DeclineFollow(long userFollowId)
+        public IActionResult DeclineFollow(long userWhoFollowsMe)
         {
             User userCurrent = GetCurrentUser();
             if (userCurrent == null)
@@ -64,7 +64,7 @@ namespace UserService.Controllers
 
             }
 
-            return Ok(userFollowService.DeclineFollow(userFollowId));
+            return Ok(userFollowService.DeclineFollow(userWhoFollowsMe, userCurrent.Id));
 
         }
 

@@ -12,11 +12,12 @@ namespace JobService.Repository
         private Dictionary<string, dynamic> _repositories;
         private readonly ProjectContext _context;
         public IJobRepository Jobs { get; set; }
-
+        public IApiKeyRepository ApiKeys { get; set; }
         public UnitOfWork(ProjectContext context)
         {
             _context = context;
             Jobs = new JobRepostiory(_context);
+            ApiKeys = new ApiKeyRepository(_context);
         }
 
         public IBaseRepository<TEntity> GetRepository<TEntity>() where TEntity : class

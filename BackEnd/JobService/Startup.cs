@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using JobService.Configuration;
 using JobService.Models;
+using JobService.Service;
 using JobService.Service.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,7 +33,7 @@ namespace JobService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IJobService, Service.JobService>();
-
+            services.AddScoped<IApiKeyService,ApiKeyService>();
             ProjectConfiguration config = new ProjectConfiguration();
             Configuration.Bind("ProjectConfiguration", config);
             services.AddSingleton(config);
@@ -55,7 +56,7 @@ namespace JobService
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ProjectContext dataContext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env ,ProjectContext dataContext)
         {
             if (env.IsDevelopment())
             {

@@ -8,5 +8,6 @@ namespace UserService.Repository.Core
 {
     public interface IUserFollowRepository : IBaseRepository<UserFollows>
     {
+        public UserFollows GetUserFollowBasedOnUsers(long UserWhosFollowsMe, long loggedInUser);
     }
 }

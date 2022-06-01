@@ -63,6 +63,7 @@ namespace JobService.Service
                 _logger.LogError($"Error in BaseService in Add Method {e.Message} in {e.StackTrace}");
                 return null;
             }
+          
         }
 
         public virtual bool Update(long id, TEntity entity)

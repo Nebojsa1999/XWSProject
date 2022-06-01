@@ -61,13 +61,28 @@ namespace UserService.Service
 
         }
 
+        public UserFollows GetUserFollowBasedOnUsers(long UserWhoFollowsID, long UserWhomFollowsID)
+        {
+
+            try
+            {
+                using UnitOfWork unitOfWork = new(new ProjectContext());
+                return unitOfWork.UserFollows.GetUserFollowBasedOnUsers(UserWhoFollowsID, UserWhomFollowsID);
+            }
+
+            catch (Exception e)
+            {
+                _logger.LogError($"Error in UserFollowService in GetUserFollowBasedOnUsers {e.Message } in { e.StackTrace}");
+                return null;
+            }
+        }
          
-        public bool AcceptFollow(long UserFollowID)
+        public bool AcceptFollow(long userWhoFollowsMe, long loggedInUser)
         {
             try
             {
                 using UnitOfWork unitOfWork = new(new ProjectContext());
-                UserFollows userFollows = Get(UserFollowID);
+                UserFollows userFollows = GetUserFollowBasedOnUsers(userWhoFollowsMe, loggedInUser);
                 userFollows.StateOfFollow = Models.Enum.UserFollowEnum.Accepted;
                 unitOfWork.UserFollows.Update(userFollows);
                 _ = unitOfWork.Complete();
@@ -76,17 +91,17 @@ namespace UserService.Service
 
             catch (Exception e)
             {
-                _logger.LogError($"Error in BaseService in Update Method {e.Message} in {e.StackTrace}");
+                _logger.LogError($"Error in UserFollowService in AcceptFollow Method {e.Message} in {e.StackTrace}");
                 return false;
             }
         }
 
-        public bool DeclineFollow(long UserFollowID)
+        public bool DeclineFollow(long userWhoFollowsMe, long loggedInUser)
         {
             try
             {
                 using UnitOfWork unitOfWork = new(new ProjectContext());
-                UserFollows userFollows = Get(UserFollowID);
+                UserFollows userFollows = GetUserFollowBasedOnUsers(userWhoFollowsMe, loggedInUser);
                 userFollows.StateOfFollow = Models.Enum.UserFollowEnum.Declined;
                 unitOfWork.UserFollows.Update(userFollows);
                 _ = unitOfWork.Complete();
@@ -95,7 +110,7 @@ namespace UserService.Service
 
             catch (Exception e)
             {
-                _logger.LogError($"Error in BaseService in Update Method {e.Message} in {e.StackTrace}");
+                _logger.LogError($"Error in UserFollowService in DeclineFollow Method {e.Message} in {e.StackTrace}");
                 return false;
             }
         }

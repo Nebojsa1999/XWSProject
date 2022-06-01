@@ -83,7 +83,7 @@ namespace UserService.Service
             }
             catch (Exception e)
             {
-                _logger.LogError($"Error in BaseService in Update Method {e.Message} in {e.StackTrace}");
+                _logger.LogError($"Error in UpdateUser in UpdateUser Method {e.Message} in {e.StackTrace}");
                 return false;
             }
 

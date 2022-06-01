@@ -26,6 +26,11 @@ namespace PostService.Repository
 
         }
 
+        public List<Post> GetPostsByUser(long userId)
+        {
+            return ProjectContext.Posts.Where(x => x.UserId == userId).ToList();
+        }
+
        
 
     }

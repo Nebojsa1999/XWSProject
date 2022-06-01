@@ -66,6 +66,14 @@ namespace PostService.Service
             }
         }
 
+        public List<Post> GetPostsByUser(long userId)
+        {
+            using UnitOfWork unitOfWork = new(new ProjectContext());
+            {
+                return unitOfWork.Posts.GetPostsByUser(userId);
+            }
+        }
+
    
     }
 

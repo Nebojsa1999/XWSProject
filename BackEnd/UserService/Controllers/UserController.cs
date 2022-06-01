@@ -60,12 +60,7 @@ namespace UserService.Controllers
         [HttpGet]
         public IActionResult GetPublicUsers()
         {
-            User userCurrent = GetCurrentUser();
-            if (userCurrent == null)
-            {
-                return BadRequest("Must be logged in");
-
-            }
+          
             return Ok(userService.GetPublicUsers());
         }
 

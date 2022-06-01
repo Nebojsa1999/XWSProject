@@ -43,7 +43,14 @@ namespace PostService.Controllers
             return Ok(postService.GetPostsFromFollowedUser(listUserIdDTO.UserIds));
         }
 
-     
+        [Route("getPostsByUserId/{userId}")]
+        [HttpGet]
+
+        public IActionResult GetPostsByUserId(long userId)
+        {
+            return Ok(postService.GetPostsByUser(userId));
+        }
+
 
     }
 }

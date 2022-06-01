@@ -9,8 +9,8 @@ namespace UserService.Service.Core
     public interface IUserFollowService : IBaseService<UserFollows>
     {
         UserFollows AddUserFollows(long UserWhoFollowsID, long UserWhomFollowsID);
-        public bool AcceptFollow(long UserFollowID);
-        public bool DeclineFollow(long UserFollowID);
+        public bool AcceptFollow(long userWhoFollowsMe, long loggedInUser);
+        public bool DeclineFollow(long userWhoFollowsMe, long loggedInUser);
 
     }
 }
