@@ -9,5 +9,6 @@ namespace JobService.Service.Core
     public interface IApiKeyService : IBaseService<ApiKey>
     {
         public ApiKey GetApiKeyFromUser(long id);
+        public ApiKey CheckIfApiKeyExists(string api);
     }
 }

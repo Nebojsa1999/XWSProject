@@ -11,5 +11,6 @@ namespace JobService.Models
         public string Position { get; set; }
         public string DescriptionActivity { get; set; }
         public string Precondition { get; set; }
+        public long OwnerId { get; set; }
     }
 }

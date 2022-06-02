@@ -8,5 +8,6 @@ namespace JobService.Repository.Core
 {
     public interface IJobRepository : IBaseRepository<Job>
     {
+        public IEnumerable<Entity> SearchJob(string Position);
     }
 }

@@ -13,5 +13,12 @@ namespace JobService.Repository
         {
 
         }
+
+        public  IEnumerable<Entity> SearchJob(string Position)
+        {
+            return ProjectContext.Jobs.Where(x => x.Position.Contains(Position)).ToList();
+        }
+
+
     }
 }

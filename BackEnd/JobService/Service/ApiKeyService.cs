@@ -56,6 +56,12 @@ namespace JobService.Service
             return unitOfWork.ApiKeys.GetApiKeyFromUser(id);
         }
 
+        public ApiKey CheckIfApiKeyExists(string api)
+        {
+            using UnitOfWork unitOfWork = new(new ProjectContext());
+            return unitOfWork.ApiKeys.CheckIfApiKeyExists(api);
+        }
+
 
  
     }

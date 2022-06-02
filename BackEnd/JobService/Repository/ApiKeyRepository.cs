@@ -20,5 +20,11 @@ namespace JobService.Repository
         {
             return ProjectContext.ApiKeys.Where(x => x.userId == userId).FirstOrDefault();
         }
+
+        public ApiKey  CheckIfApiKeyExists(string api)
+        {
+            return ProjectContext.ApiKeys.Where(x => x.ApiKeyString.Contains(api)).FirstOrDefault();
+        }
+
     }
 }

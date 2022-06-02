@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using JobService.Configuration;
 using JobService.Models;
+using JobService.Models.DTO;
 using JobService.Service.Core;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,11 +21,18 @@ namespace JobService.Controllers
             this.jobService = jobService;
         }
 
-        [Route("create")]
-        [HttpPost]
-        public IActionResult Create(Job job)
+       [Route("searchjob")]
+       [HttpPost]
+       public IActionResult Search(SearchDTO searchDTO)
         {
-            return Ok(jobService.Add(job));
+            return Ok(jobService.SearchJob(searchDTO.Position));
+        }
+
+        [Route("getAllJobs")]
+        [HttpGet]
+        public IActionResult GetAllJobs()
+        {
+            return Ok(jobService.GetAll());
         }
 
 
