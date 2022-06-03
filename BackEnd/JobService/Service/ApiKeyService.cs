@@ -25,7 +25,7 @@ namespace JobService.Service
 
                 if (apiKey == null)
                 {
-
+                    entity.ApiKeyString = RandomStringHelper.RandomString(5);
                     unitOfWork.ApiKeys.Add(entity);
                     _ = unitOfWork.Complete();
 

@@ -1,0 +1,15 @@
+﻿syntax = "proto3";
+
+service UserGRPC {
+  rpc GetUser (UserRequest) returns (UserResponse) {}
+}
+
+message UserRequest {
+  int64 id = 1;
+}
+
+message UserResponse {
+  string firstName = 1;
+  string lastName = 2;
+  int64 id = 3;
+}
